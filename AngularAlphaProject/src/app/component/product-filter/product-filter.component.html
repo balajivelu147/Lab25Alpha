@@ -1,0 +1,158 @@
+<div class="container">
+<div class="row" >
+    <!-- <div class="col-1">
+
+    </div> -->
+    <div class="col-2 mt-4" >
+        <div class="row" id="products">
+            <div id="list-example" class="list-group">
+                <a class="list-group-item list-group-item-action" [class]="allactive" (click)="displayAll()">All
+                    Categories</a>
+                <a class="list-group-item list-group-item-action" [class]="bioactive"
+                    (click)=" displayBio()">Biography</a>
+                <a class="list-group-item list-group-item-action" [class]="fictionactive"
+                    (click)="displayFiction()">Fiction</a>
+                <a class="list-group-item list-group-item-action" [class]="mysteryactive"
+                    (click)="displaymystery()">Mystery</a>
+                <a class="list-group-item list-group-item-action" [class]="fantasyactive"
+                    (click)="displayfantasy()">Fantasy</a>
+                <a class="list-group-item list-group-item-action" [class]="romanceactive"
+                    (click)="displayromance()">Romance</a>
+            </div>
+        </div>
+    
+
+        <div class="row mt-3" id="pricefilter">
+            <div class="row" style="background-color:  #ff4081; color: white;  font-size: larger; width: 260px; height: 40px; margin-top: 0px; margin-left: -1px;">
+                <h2 style="font-size: 26px; margin-top: 2px;margin-left: 3px;">Price Filter</h2>
+            </div>
+            <div class="row mt-2" >
+                <input type="range" min="111" max="12000" value="100" step="389" (input)="valueChanged($event)">
+                <h3 style="margin-top: 20px;"> &#8377; <strong>111</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8377; <strong>{{ rangevalue }}</strong> </h3>
+            </div>
+        </div>
+
+   
+
+        <div class="row" style="width: 260px; height: 30px;margin-top: 6px;">
+
+            <input class="form-control" type="text" name="search" autocomplete="off" [(ngModel)]="searchText"
+                placeholder=" please enter BookTitle">
+
+        </div>
+    </div>
+
+
+
+    <div class="col-8 mt-5" id="bookList" style="margin-left: 100px; position: static;">
+        <div class="row row-cols-2 row-cols-md-4 g-1">
+            <!-- <div class="col"> -->
+            <div class="card" *ngFor="let product of listOfBooks | filter:searchText">
+                <img [src]="'https://bookcart.azurewebsites.net/Upload/' + product.coverFileName" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">BookTitle:{{product.title}}</h5>
+                    <p class="card-text">Category:{{product.category}}</p>
+                    <p class="card-text">Price: &#8377;{{product.price}}</p>
+                    <p class="card-text">Author:{{product.author}}</p>
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+            <div class="card" *ngFor="let product of bioBookList | filter:searchText ">
+                <img [src]="'https://bookcart.azurewebsites.net/Upload/' + product.coverFileName" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">BookTitle:{{product.title}}</h5>
+                    <p class="card-text">Category:{{product.category}}</p>
+                    <p class="card-text">Price: &#8377; {{product.price}}</p>
+                    <p class="card-text">Author:{{product.author}}</p>
+
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+            <div class="card" *ngFor="let product of fictionBookList | filter:searchText">
+                <img [src]="'https://bookcart.azurewebsites.net/Upload/' + product.coverFileName" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">BookTitle:{{product.title}}</h5>
+                    <p class="card-text">Category:{{product.category}}</p>
+                    <p class="card-text">Price: &#8377;{{product.price}}</p>
+                    <p class="card-text">Author:{{product.author}}</p>
+
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+            <div class="card" *ngFor="let product of mysteryBookList | filter:searchText">
+                <img [src]="'https://bookcart.azurewebsites.net/Upload/' + product.coverFileName" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">BookTitle:{{product.title}}</h5>
+                    <p class="card-text">Category:{{product.category}}</p>
+                    <p class="card-text">Price: &#8377;{{product.price}}</p>
+                    <p class="card-text">Author:{{product.author}}</p>
+
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+            <div class="card" *ngFor="let product of fantasyBookList | filter:searchText">
+                <img [src]="'https://bookcart.azurewebsites.net/Upload/' + product.coverFileName" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">BookTitle:{{product.title}}</h5>
+                    <p class="card-text">Category:{{product.category}}</p>
+                    <p class="card-text">Price: &#8377;{{product.price}}</p>
+                    <p class="card-text">Author:{{product.author}}</p>
+
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+            <div class="card" *ngFor="let product of romanceBookList | filter:searchText">
+                <img [src]="'https://bookcart.azurewebsites.net/Upload/' + product.coverFileName" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">BookTitle:{{product.title}}</h5>
+                    <p class="card-text">Category:{{product.category}}</p>
+                    <p class="card-text">Price: &#8377; {{product.price}}</p>
+                    <p class="card-text">Author:{{product.author}}</p>
+
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+            <div class="card" *ngFor="let product of inputRangeList | filter:searchText">
+                <img [src]="'https://bookcart.azurewebsites.net/Upload/' + product.coverFileName" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">BookTitle:{{product.title}}</h5>
+                    <p class="card-text">Category:{{product.category}}</p>
+                    <p class="card-text">Price: &#8377;{{product.price}}</p>
+                    <p class="card-text">Author:{{product.author}}</p>
+
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+            <div class="card" *ngFor="let product of inputRange3000 | filter:searchText">
+                <img [src]="'https://bookcart.azurewebsites.net/Upload/' + product.coverFileName" class="card-img-top"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">BookTitle:{{product.title}}</h5>
+                    <p class="card-text">Category:{{product.category}}</p>
+                    <p class="card-text">Price: &#8377;{{product.price}}</p>
+                    <p class="card-text">Author:{{product.author}}</p>
+
+                </div>
+            </div>
+            <!-- </div> -->
+        </div>
+        <!-- <div class="col-1"></div> -->
+    </div>
+
+
+</div>
+</div>
