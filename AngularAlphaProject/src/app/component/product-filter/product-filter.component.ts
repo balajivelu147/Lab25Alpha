@@ -15,7 +15,7 @@ export class ProductFilterComponent implements OnInit {
 
   }
 
-  searchText: string=""
+  searchText: string = ""
   allactive: string = ""
   bioactive: string = ""
   fictionactive: string = ""
@@ -30,27 +30,20 @@ export class ProductFilterComponent implements OnInit {
   fantasyBookList: any[] = [];
   romanceBookList: any[] = [];
   inputRangeList: any[] = [];
-  inputRange3000:any[]=[];
-  
+  filteredBooks: number[] = []
+
 
   rangevalue = 111;
+  minimum = 111;
 
   valueChanged(e: any) {
-    console.log("value of e", e)
     this.rangevalue = e.target.value;
+    console.log("value of e", this.rangevalue)
     this.data.getAllBooks().subscribe((response: any) => {
       console.log("allbooks", response)
-      this.listOfBooks = response;
-      this.listOfBooks.forEach((element: any) => {
-        if (this.rangevalue <= 1800 && element.price <= 1800) {
-          this.listOfBooks=[]
-          this.inputRangeList.push(element)
-          console.log("price list less 2000", this.inputRangeList)
-        }
-        else if(this.rangevalue > 1800 && this.rangevalue <=2500 && element.price >1800 && element.price <=2500){
-          this.listOfBooks=[]
-          this.inputRangeList=[]
-          this.inputRange3000.push(element)
+      response.forEach((element: any) => {
+        if (element.price <= this.rangevalue && element.price >= this.minimum) {
+          this.filteredBooks.push(element)
         }
       })
     })
@@ -181,3 +174,4 @@ export class ProductFilterComponent implements OnInit {
 
   }
 }
+
