@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -99,6 +100,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -107,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "AngularAlphaProject"
+  "defaultProject": "AngularAlphaProject",
+  "cli": {
+    "analytics": "a871912b-0b43-4e52-9937-36a9798bde1f"
+  }
 }
