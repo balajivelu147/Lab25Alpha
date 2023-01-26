@@ -5,5 +5,7 @@ export interface bookDetails {
     category: string
     price: number
     coverFileName: string
+    isSelected: boolean
+    isHovered:boolean
   }
   

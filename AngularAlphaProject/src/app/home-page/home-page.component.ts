@@ -1,42 +1,67 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HomePageService } from '../service/home-page.service';
-
+import { bookDetails } from '../type/interface';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  constructor(private data: HomePageService, private snackBar: MatSnackBar) {}
+  constructor(
+    private data: HomePageService,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.data.getdata().subscribe((response) => {
       this.listOfBooks = response;
-      console.log(response);
     });
+
+    
   }
 
-  addToCartToast() {
+  addToCartToast(book: any) {
     this.snackBar.open('One item added to cart', 'close', {
-      duration: 5000,
+      duration: 3000,
       verticalPosition: 'top',
     });
+
+    this.data.addToCart(book).subscribe(
+      (data) => {
+        console.log('Item added to cart:', data);
+      },
+      (error) => {
+        console.log('Error adding item to cart:', error);
+      }
+    );
   }
 
-  selectItem(item: any) {
-    item.isSelected = !item.isSelected;
-    if (item.isSelected) {
-      this.snackBar.open(item.title + ' added to your Wishlist', 'close', {
+  addtoWishList(book: any) {
+    book.isSelected = !book.isSelected;
+    if (book.isSelected) {
+      this.snackBar.open(book.title + ' added to your Wishlist', 'close', {
         duration: 3000,
         verticalPosition: 'top',
       });
     } else {
-      this.snackBar.open(item.title + '  removed from your Wishlist', 'close', {
+      this.snackBar.open(book.title + '  removed from your Wishlist', 'close', {
         duration: 3000,
         verticalPosition: 'top',
       });
     }
+    this.data.addToCart(book).subscribe(
+      (data) => {
+        console.log('Item added to cart:', data);
+      },
+      (error) => {
+        console.log('Error adding item to cart:', error);
+      }
+    );
   }
 
   onMouseOver(item: any) {
@@ -56,6 +81,17 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  openChildComponent(book:number){
+    this.isProductDetailVisible = false
+    this.router.navigate(['/book-details', book]);
+   
+  }
 
-  listOfBooks: any[] = [];
+  
+
+  selectedBook = {};
+
+  listOfBooks: bookDetails[] = [];
+
+  isProductDetailVisible: boolean = true;
 }

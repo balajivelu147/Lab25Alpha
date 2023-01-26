@@ -11,7 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { BookDetailsComponent } from './book-details/book-details.component';
+import { Routes, RouterModule  } from '@angular/router';
+
 @NgModule({
+  
+
 
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -20,6 +25,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     HomePageComponent,
+    BookDetailsComponent,
   ],
 
   imports: [
@@ -31,9 +37,15 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     MatGridListModule,
     MatSnackBarModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
+  
 })
+
+
+
 export class AppModule { }
