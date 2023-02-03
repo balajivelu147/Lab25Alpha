@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,7 +21,7 @@ export class HomePageComponent implements OnInit {
       this.listOfBooks = response;
     });
 
-    
+
   }
 
   addToCartToast(book: any) {
@@ -31,6 +30,7 @@ export class HomePageComponent implements OnInit {
       verticalPosition: 'top',
     });
 
+   
     this.data.addToCart(book).subscribe(
       (data) => {
         console.log('Item added to cart:', data);
@@ -39,6 +39,9 @@ export class HomePageComponent implements OnInit {
         console.log('Error adding item to cart:', error);
       }
     );
+
+    localStorage.setItem("bookId/" + book.bookId, JSON.stringify(book));
+    
   }
 
   addtoWishList(book: any) {
@@ -54,14 +57,17 @@ export class HomePageComponent implements OnInit {
         verticalPosition: 'top',
       });
     }
+
     this.data.addToCart(book).subscribe(
-      (data) => {
-        console.log('Item added to cart:', data);
+      (book) => {
+        console.log('Item added to cart:', book);
       },
       (error) => {
         console.log('Error adding item to cart:', error);
       }
     );
+
+    localStorage.setItem("bookId/" + book.bookId, JSON.stringify(book));
   }
 
   onMouseOver(item: any) {
@@ -87,7 +93,9 @@ export class HomePageComponent implements OnInit {
    
   }
 
-  
+
+
+  isSelected : boolean = false
 
   selectedBook = {};
 
