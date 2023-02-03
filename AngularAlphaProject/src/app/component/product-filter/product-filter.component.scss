@@ -1,39 +1,71 @@
-a.list-group-item.list-group-item-action.active{
-    background-color:#fd7e14;
+a.list-group-item.list-group-item-action.active {
+    background-color: #fd7e14;
 }
-a.list-group-item.list-group-item-action:hover{
+
+a.list-group-item.list-group-item-action:hover {
     background-color: lightgrey;
     cursor: pointer;
 }
 
 
-#list-example.list-group{
+#list-example.list-group {
     height: 260px;
 }
 
-a.list-group-item.list-group-item-action{
+a.list-group-item.list-group-item-action {
     height: 80px;
     width: 256px;
 }
-#products{
+
+#products {
     margin-top: 20px;
     font-size: large;
-    font-weight:normal;
+    font-weight: normal;
     width: 260px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
-#pricefilter{
+#pricefilter {
     width: 260px;
     height: 180px;
     margin-left: -10px;
     border-color: whitesmoke;
     border-style: solid;
-    
+
 }
 
+#searchtext {
+    width: 260px;
+    height: 30px;
+    margin-top: 6px;
+}
 
+#pricefilter h2 {
+    font-size: 26px;
+    margin-top: 2px;
+    margin-left: 3px;
+}
 
+#filterDiv {
+    background-color: #ff4081;
+    color: white;
+    font-size: larger;
+    width: 260px;
+    height: 40px;
+    margin-top: 0px;
+    margin-left: -1px;
+}
 
+#bookList {
+    margin-left: 100px;
+    position: static;
+}
 
-  
+#spaced {
+    word-spacing: 40px;
+}
+
+#spacing {
+    margin-top: 20px;
+    text-indent: 2em;
+}

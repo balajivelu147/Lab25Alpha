@@ -22,7 +22,7 @@ export class ProductFilterComponent implements OnInit {
   mysteryactive: string = ""
   fantasyactive: string = ""
   romanceactive: string = ""
-
+  initialvalue: number = 0;
   listOfBooks: any[] = [];
   bioBookList: any[] = [];
   fictionBookList: any[] = [];
@@ -30,12 +30,14 @@ export class ProductFilterComponent implements OnInit {
   fantasyBookList: any[] = [];
   romanceBookList: any[] = [];
   inputRangeList: any[] = [];
-  filteredBooks: number[] = []
+  filteredBooks: number[] = [];
+  categoryBookList: any[] = []
 
 
-  rangevalue = 111;
-  minimum = 111;
+  rangevalue: number = 0;
+  minimum: number = 0;
 
+  //logic for price range slider
   valueChanged(e: any) {
     this.rangevalue = e.target.value;
     console.log("value of e", this.rangevalue)
@@ -49,129 +51,93 @@ export class ProductFilterComponent implements OnInit {
     })
   }
 
+  //logic to display books based on category
 
-  displayAll() {
-    this.allactive = "active"
-    this.bioactive = ""
-    this.fictionactive = ""
-    this.romanceactive = ""
-    this.mysteryactive = ""
-    this.fantasyactive = ""
-    this.data.getAllBooks().subscribe((response: any) => {
-      console.log("response is", response)
-      this.listOfBooks = response;
-    })
-  }
-
-  displayBio() {
-    this.bioactive = "active"
-    this.allactive = ""
-    this.fictionactive = ""
-    this.fantasyactive = ""
-    this.romanceactive = ""
-    this.mysteryactive = ""
+  displayByCategory(data: any) {
     this.data.getAllBooks().subscribe((response: any) => {
       this.listOfBooks = response;
       console.log("response of all books", this.listOfBooks);
+      if (data == 1) {
+        this.allactive = "active"
+        this.bioactive = ""
+        this.fictionactive = ""
+        this.romanceactive = ""
+        this.mysteryactive = ""
+        this.fantasyactive = ""
+        this.listOfBooks = response;
+
+      }
       this.listOfBooks.forEach((element: any) => {
-        if (element.category == "Biography") {
+        if (element.category == "Biography" && data == 2) {
+          console.log("value is ", data)
+          this.bioactive = "active"
+          this.allactive = ""
+          this.fictionactive = ""
+          this.fantasyactive = ""
+          this.romanceactive = ""
+          this.mysteryactive = ""
           this.listOfBooks = []
           this.bioBookList.push(element);
-          console.log("element with biography category is ", this.bioBookList);
-        }
-      });
-    })
-  }
+          console.log("biography books", this.bioBookList)
 
-  displayFiction() {
-    this.fictionactive = "active"
-    this.allactive = ""
-    this.bioactive = ""
-    this.fantasyactive = ""
-    this.romanceactive = ""
-    this.mysteryactive = ""
-    this.data.getAllBooks().subscribe((response: any) => {
-      this.listOfBooks = response;
-      console.log("response of all books", this.listOfBooks);
-      this.listOfBooks.forEach((element: any) => {
-        if (element.category == "Fiction") {
+        }
+        else if (element.category == "Fiction" && data == 3) {
+          console.log("value is ", data)
           this.listOfBooks = []
           this.bioBookList = []
+          this.fictionactive = "active"
+          this.allactive = ""
+          this.bioactive = ""
+          this.fantasyactive = ""
+          this.romanceactive = ""
+          this.mysteryactive = ""
           this.fictionBookList.push(element);
-          console.log("mystery books", this.fictionBookList)
-        }
-      })
-    })
 
-  }
-
-  displaymystery() {
-    this.mysteryactive = "active"
-    this.fictionactive = ""
-    this.allactive = ""
-    this.bioactive = ""
-    this.fantasyactive = ""
-    this.romanceactive = ""
-    this.data.getAllBooks().subscribe((response: any) => {
-      this.listOfBooks = response;
-      console.log("response of all books", this.listOfBooks);
-      this.listOfBooks.forEach((element: any) => {
-        if (element.category == "Mystery") {
+        } else if (element.category == "Mystery" && data == 4) {
+          this.categoryBookList = []
+          this.mysteryactive = "active"
+          this.fictionactive = ""
+          this.allactive = ""
+          this.bioactive = ""
+          this.fantasyactive = ""
+          this.romanceactive = ""
           this.listOfBooks = []
           this.bioBookList = []
           this.fictionBookList = []
           this.mysteryBookList.push(element);
-          console.log("mystery books", this.mysteryBookList)
-        }
-      })
-    })
 
-  }
-  displayfantasy() {
-    this.fantasyactive = "active"
-    this.mysteryactive = ""
-    this.fictionactive = ""
-    this.allactive = ""
-    this.bioactive = ""
-    this.romanceactive = ""
-    this.data.getAllBooks().subscribe((response: any) => {
-      this.listOfBooks = response;
-      console.log("response of all books", this.listOfBooks)
-      this.listOfBooks.forEach((element: any) => {
-        if (element.category == "Fantasy") {
+        } else if (element.category == "Fantasy" && data == 5) {
+          this.fantasyactive = "active"
+          this.mysteryactive = ""
+          this.fictionactive = ""
+          this.allactive = ""
+          this.bioactive = ""
+          this.romanceactive = ""
           this.listOfBooks = []
           this.bioBookList = []
           this.fictionBookList = []
           this.mysteryBookList = []
           this.fantasyBookList.push(element);
-          console.log("fantasy book", this.fantasyBookList)
-        }
-      })
-    })
-  }
-  displayromance() {
-    this.romanceactive = "active"
-    this.mysteryactive = ""
-    this.fictionactive = ""
-    this.allactive = ""
-    this.bioactive = ""
-    this.fantasyactive = ""
-    this.data.getAllBooks().subscribe((response: any) => {
-      this.listOfBooks = response;
-      console.log("response of all books", this.listOfBooks)
-      this.listOfBooks.forEach((element: any) => {
-        if (element.category == "Romance") {
+
+        } else if (element.category == "Romance" && data == 6) {
+          this.romanceactive = "active"
+          this.mysteryactive = ""
+          this.fictionactive = ""
+          this.allactive = ""
+          this.bioactive = ""
+          this.fantasyactive = ""
           this.listOfBooks = []
           this.bioBookList = []
           this.fictionBookList = []
           this.mysteryBookList = []
           this.fantasyBookList = []
           this.romanceBookList.push(element);
-          console.log("romance", this.romanceBookList)
+          
         }
       })
     })
-
   }
+
+
 }
 
