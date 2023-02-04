@@ -1,0 +1,117 @@
+
+<div>
+    <h2 id="l1" class="headpara">
+        Check Out
+    </h2>
+    
+    <div>
+    
+        <div id="r1"  class="left">
+    
+        <h3 class="padh3">Shipping Address</h3>
+        
+        <div class="pad">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+               
+                <div class="formsec">
+                    
+                    <input placeholder="Name *" type="text" formControlName="firstName" class="form-control" />
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    </div>
+                </div>
+                <div class="formsec">
+                    
+                    <input placeholder="Address *" type="text" formControlName="address" class="form-control" />
+                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                        <div *ngIf="f.address.errors.required">Address is required</div>
+                    </div>
+                </div>
+    
+                <div class="formsec">
+                   
+                    <input placeholder="Pincode *" type="text" formControlName="pincode" class="form-control" />
+                    <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                        <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                    </div>
+                </div>
+    
+                <div class="formsec">
+                   
+                    <input placeholder="Phone *" type="text" formControlName="phone" class="form-control" />
+                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                        <div *ngIf="f.phone.errors.required">Phone is required</div>
+                    </div>
+                </div>
+    
+            </div>
+        
+           
+            <div class="text-center">
+                <button class="btn btn-primary mr-1"(click)="checkOut()" [routerLink]='["/myorder"]'>Place Order</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()" [routerLink]='["/shopingcart"]' >Cancel</button>
+            </div>
+        </form>
+    </div>
+        </div>
+    
+       
+        <div class="left">
+    
+            <h3 class="padh3">Order Summary</h3>
+            
+            <div class="pad">
+        
+                <table>
+                   
+                    
+                            <tr class="headtr" *ngIf="cartData.length!=0">
+                                <th>Title</th>
+                                <th >MRP</th>
+                                <th class="txtce">Quantity</th>
+                                
+                                <th class="txtce">Total</th>
+                            </tr>
+                    <tr *ngFor="let i of cartData" class="trBox">
+                    <td>
+                        <a [routerLink]='["/bookdetails"]'>{{i.book.title}}</a>
+
+                        </td>
+                    <td>{{i.book.price}}</td>
+                    <td class="txtce">
+                       {{i.quantity}}
+                    </td>
+                    <td class="txtce">
+                        {{i.book.price*i.quantity}}
+                    </td>
+                   
+                    </tr>  
+                    <tr *ngIf="cartData.length!=0">
+                        <td></td>
+                        <td></td>
+                        <td class="txtce">
+                            <b>
+                                Grand Total
+                            </b>
+                            </td>
+                        <td class="txtce">
+                            {{total()}}
+                        </td>
+                    </tr>
+                    <tr *ngIf="cartData.length==0">
+                        <button class="btn btn-secondary" [routerLink]='["/Homepage"]' >Continue shoping</button>
+                    </tr>
+                    </table>
+                    
+    
+        </div>
+            </div>
+    
+    
+    </div>
+    
+    </div>
+    
+    
+    
